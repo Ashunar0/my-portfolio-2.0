@@ -1,68 +1,52 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { Loader2 } from "lucide-react";
 
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-    // Clear status when user starts typing
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const clearStatus = () => {
     if (status.type) {
       setStatus({ type: null, message: "" });
     }
   };
 
-  const validateForm = () => {
-    if (!formData.name.trim()) {
-      setStatus({ type: "error", message: "Name is required" });
-      return false;
-    }
-    if (!formData.email.trim()) {
-      setStatus({ type: "error", message: "Email is required" });
-      return false;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setStatus({
-        type: "error",
-        message: "Please enter a valid email address",
-      });
-      return false;
-    }
-    if (!formData.message.trim()) {
-      setStatus({ type: "error", message: "Message is required" });
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+  const onSubmit = async (data: ContactFormData) => {
+    const trimmedData = {
+      name: data.name.trim(),
+      email: data.email.trim(),
+      message: data.message.trim(),
+    };
 
     // Check if environment variables are set
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -78,17 +62,28 @@ export function ContactSection() {
       return;
     }
 
-    setIsLoading(true);
+    // Check if we're in the browser
+    if (typeof window === "undefined") {
+      setStatus({
+        type: "error",
+        message: "This form can only be submitted in the browser.",
+      });
+      return;
+    }
+
     setStatus({ type: null, message: "" });
 
     try {
+      // Dynamically import EmailJS only on the client side
+      const emailjs = (await import("@emailjs/browser")).default;
+
       await emailjs.send(
         serviceId,
         templateId,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
+          from_name: trimmedData.name,
+          from_email: trimmedData.email,
+          message: trimmedData.message,
         },
         publicKey
       );
@@ -97,8 +92,7 @@ export function ContactSection() {
         type: "success",
         message: "Thank you! Your message has been sent successfully.",
       });
-      // Reset form
-      setFormData({ name: "", email: "", message: "" });
+      reset();
     } catch (error) {
       console.error("EmailJS error:", error);
       setStatus({
@@ -106,8 +100,6 @@ export function ContactSection() {
         message:
           "Failed to send message. Please try again later or contact me directly.",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -131,7 +123,7 @@ export function ContactSection() {
             Have a question or want to work together? Send me a message!
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <label
@@ -143,11 +135,17 @@ export function ContactSection() {
               <Input
                 id="name"
                 placeholder="Your name"
-                value={formData.name}
-                onChange={handleChange}
-                disabled={isLoading}
-                required
+                aria-invalid={errors.name ? "true" : "false"}
+                disabled={isSubmitting}
+                {...register("name", {
+                  validate: (value) =>
+                    value.trim().length > 0 || "Name is required",
+                  onChange: clearStatus,
+                })}
               />
+              {errors.name && (
+                <p className="text-sm text-destructive">{errors.name.message}</p>
+              )}
             </div>
             <div className="space-y-2">
               <label
@@ -160,11 +158,27 @@ export function ContactSection() {
                 id="email"
                 placeholder="Your email"
                 type="email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={isLoading}
-                required
+                aria-invalid={errors.email ? "true" : "false"}
+                disabled={isSubmitting}
+                {...register("email", {
+                  validate: (value) => {
+                    const trimmed = value.trim();
+                    if (!trimmed) {
+                      return "Email is required";
+                    }
+                    return (
+                      emailRegex.test(trimmed) ||
+                      "Please enter a valid email address"
+                    );
+                  },
+                  onChange: clearStatus,
+                })}
               />
+              {errors.email && (
+                <p className="text-sm text-destructive">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
           </div>
           <div className="space-y-2">
@@ -178,11 +192,19 @@ export function ContactSection() {
               id="message"
               placeholder="Your message"
               className="min-h-[150px]"
-              value={formData.message}
-              onChange={handleChange}
-              disabled={isLoading}
-              required
+              aria-invalid={errors.message ? "true" : "false"}
+              disabled={isSubmitting}
+              {...register("message", {
+                validate: (value) =>
+                  value.trim().length > 0 || "Message is required",
+                onChange: clearStatus,
+              })}
             />
+            {errors.message && (
+              <p className="text-sm text-destructive">
+                {errors.message.message}
+              </p>
+            )}
           </div>
           {status.type && (
             <div
@@ -198,9 +220,9 @@ export function ContactSection() {
           <Button
             type="submit"
             className="w-full md:w-auto"
-            disabled={isLoading}
+            disabled={isSubmitting}
           >
-            {isLoading ? (
+            {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Sending...

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Twitter, Linkedin } from "lucide-react";
+import { ArrowRight, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 
 export function HeroSection() {
@@ -20,7 +20,7 @@ export function HeroSection() {
           to Make People Smile
         </h1>
         <p className="mx-auto max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          I'm a CS student and Frontend Developer passionate about React &
+          I&apos;m a CS student and Frontend Developer passionate about React &
           Shadcn UI. Building digital products that solve problems and deliver
           happiness.
         </p>

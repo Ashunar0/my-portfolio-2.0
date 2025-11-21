@@ -25,7 +25,7 @@ export function AboutSection() {
             <p className="leading-relaxed">
               I am a Computer Science student passionate about Frontend
               Development. My ultimate goal is to solve real-world problems and
-              bring smiles to people's faces through the software I build. I
+              bring smiles to people&apos;s faces through the software I build. I
               believe that a product is only successful when the user feels good
               using it, which is why I prioritize UI/UX above all else.
             </p>
@@ -34,8 +34,8 @@ export function AboutSection() {
               Cloud development team and also teach React at a programming
               school. I love modern tools like{" "}
               <span className="font-medium text-foreground">Shadcn UI</span> for
-              building polished interfaces and lately, I've been exploring
-              AI-driven "Vibe Coding" to accelerate my workflow.
+              building polished interfaces and lately, I&apos;ve been exploring
+              AI-driven &ldquo;Vibe Coding&rdquo; to accelerate my workflow.
             </p>
           </div>
         </motion.div>
