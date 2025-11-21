@@ -2,6 +2,38 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Set Up EmailJS (for Contact Form)
+
+The contact form uses EmailJS to send emails. To set it up:
+
+1. Create an account at [EmailJS](https://www.emailjs.com/)
+2. Create an Email Service (Gmail, Outlook, etc.)
+3. Create an Email Template with the following variables:
+   - `{{from_name}}` - Sender's name
+   - `{{from_email}}` - Sender's email
+   - `{{message}}` - Message content
+4. Get your credentials from EmailJS dashboard:
+
+   - Service ID
+   - Template ID
+   - Public Key (from Account > API Keys)
+
+5. Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+### 3. Run the Development Server
+
 First, run the development server:
 
 ```bash
