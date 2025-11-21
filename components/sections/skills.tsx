@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const skills = {
   Frontend: [
@@ -31,7 +31,7 @@ export function SkillsSection() {
       id="skills"
       className="container mx-auto px-4 md:px-8 py-24 md:py-32 max-w-screen-2xl"
     >
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -48,7 +48,7 @@ export function SkillsSection() {
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries(skills).map(([category, items], index) => (
-            <motion.div
+            <m.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -66,10 +66,10 @@ export function SkillsSection() {
                   </Badge>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

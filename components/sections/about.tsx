@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export function AboutSection() {
   return (
     <section id="about" className="bg-[#F5F5F7] dark:bg-muted/20">
       <div className="container mx-auto px-4 md:px-8 py-24 md:py-32 max-w-screen-2xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,7 +38,7 @@ export function AboutSection() {
               AI-driven &ldquo;Vibe Coding&rdquo; to accelerate my workflow.
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

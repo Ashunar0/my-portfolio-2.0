@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
 type ContactFormData = {
@@ -108,7 +108,7 @@ export function ContactSection() {
       id="contact"
       className="container mx-auto px-4 md:px-8 py-24 md:py-32 max-w-screen-2xl"
     >
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -232,7 +232,7 @@ export function ContactSection() {
             )}
           </Button>
         </form>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

@@ -1,8 +1,18 @@
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/hero";
-import { AboutSection } from "@/components/sections/about";
-import { SkillsSection } from "@/components/sections/skills";
-import { ProjectsSection } from "@/components/sections/projects";
-import { ContactSection } from "@/components/sections/contact";
+
+const AboutSection = dynamic(() =>
+  import("@/components/sections/about").then((mod) => mod.AboutSection)
+);
+const SkillsSection = dynamic(() =>
+  import("@/components/sections/skills").then((mod) => mod.SkillsSection)
+);
+const ProjectsSection = dynamic(() =>
+  import("@/components/sections/projects").then((mod) => mod.ProjectsSection)
+);
+const ContactSection = dynamic(() =>
+  import("@/components/sections/contact").then((mod) => mod.ContactSection)
+);
 
 export default function Home() {
   return (
