@@ -1,30 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+Next.js で構築されたモダンでレスポンシブなポートフォリオサイトです。フロントエンドエンジニアとしての作品、スキル、経験を紹介しています。
 
-### 1. Install Dependencies
+## 特徴
+
+- **モダンなデザイン**: 滑らかなアニメーションを備えたクリーンでミニマルなデザイン
+- **レスポンシブ対応**: あらゆるデバイスで動作する完全レスポンシブデザイン
+- **ダークモード**: システム設定に連動するダークモード対応（スムーズなトランジション付き）
+- **お問い合わせフォーム**: EmailJS 統合による機能的なお問い合わせフォーム
+- **パフォーマンス最適化**: 高速な読み込みのための静的サイト生成（SSG）
+- **型安全性**: より良い開発体験のための TypeScript 使用
+- **アクセシビリティ**: 適切なセマンティック HTML と ARIA ラベルによる WCAG 準拠
+
+## 技術スタック
+
+### コア技術
+
+- **[Next.js 16](https://nextjs.org/)** - App Router を備えた React フレームワーク
+- **[React 19](https://react.dev/)** - UI ライブラリ
+- **[TypeScript](https://www.typescriptlang.org/)** - 型安全性
+
+### スタイリング & UI
+
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - ユーティリティファーストの CSS フレームワーク
+- **[Shadcn UI](https://ui.shadcn.com/)** - 高品質なコンポーネントライブラリ
+- **[Framer Motion](https://www.framer.com/motion/)** - アニメーションライブラリ
+- **[Lucide React](https://lucide.dev/)** - アイコンライブラリ
+
+### フォーム & メール
+
+- **[React Hook Form](https://react-hook-form.com/)** - フォーム状態管理
+- **[EmailJS](https://www.emailjs.com/)** - クライアントサイドメールサービス
+
+### その他
+
+- **[next-themes](https://github.com/pacocoursey/next-themes)** - テーマ管理
+- **[Geist Font](https://vercel.com/font)** - モダンなタイプフェース
+
+## セットアップ
+
+### 必要な環境
+
+- Node.js 18 以上と npm/yarn/pnpm
+
+### インストール手順
+
+1. リポジトリをクローン
+
+```bash
+git clone <your-repo-url>
+cd my-portfolio
+```
+
+2. 依存関係をインストール
 
 ```bash
 npm install
 ```
 
-### 2. Set Up EmailJS (for Contact Form)
+3. 環境変数を設定
 
-The contact form uses EmailJS to send emails. To set it up:
-
-1. Create an account at [EmailJS](https://www.emailjs.com/)
-2. Create an Email Service (Gmail, Outlook, etc.)
-3. Create an Email Template with the following variables:
-   - `{{from_name}}` - Sender's name
-   - `{{from_email}}` - Sender's email
-   - `{{message}}` - Message content
-4. Get your credentials from EmailJS dashboard:
-
-   - Service ID
-   - Template ID
-   - Public Key (from Account > API Keys)
-
-5. Create a `.env.local` file in the root directory:
+プロジェクトルートに `.env.local` ファイルを作成してください：
 
 ```env
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
@@ -32,37 +68,71 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-### 3. Run the Development Server
+**EmailJS の設定方法：**
 
-First, run the development server:
+1. [EmailJS](https://www.emailjs.com/)でアカウントを作成
+2. Email Service（Gmail、Outlook など）を作成
+3. 以下の変数を含む Email Template を作成：
+   - `{{from_name}}` - 送信者名
+   - `{{from_email}}` - 送信者メールアドレス
+   - `{{message}}` - メッセージ内容
+4. EmailJS ダッシュボードから認証情報を取得
+
+5. 開発サーバーを起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 ビルド & デプロイ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 本番用ビルド
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+これにより、`out` ディレクトリに静的エクスポートが生成され、任意の静的ホスティングサービスにデプロイ可能な状態になります。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### デプロイ
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+このプロジェクトは静的エクスポート用に設定されており、以下のサービスにデプロイできます：
 
-## Deploy on Vercel
+- **Vercel**
+- **Netlify**
+- **GitHub Pages**
+- **AWS S3 + CloudFront**
+- その他の静的ホスティングサービス
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Vercel へのデプロイ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=<your-repo-url>)
+
+または、Vercel CLI を使用：
+
+```bash
+npm i -g vercel
+vercel
+```
+
+## プロジェクト構成
+
+```
+my-portfolio/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # ルートレイアウト
+│   ├── page.tsx           # ホームページ
+│   └── globals.css        # グローバルスタイル
+├── components/            # Reactコンポーネント
+│   ├── sections/         # ページセクション
+│   │   ├── hero.tsx
+│   │   ├── about.tsx
+│   │   ├── skills.tsx
+│   │   ├── projects.tsx
+│   │   └── contact.tsx
+│   └── ui/               # Shadcn UIコンポーネント
+├── lib/                  # ユーティリティ関数
+└── public/               # 静的アセット
+```
