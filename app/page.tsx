@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />
-      <Separator className="my-8 max-w-screen-2xl mx-auto opacity-50" />
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
