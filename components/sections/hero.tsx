@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { m } from "framer-motion";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -48,16 +49,20 @@ export function HeroSection() {
           transition={{ duration: 1.0, delay: 0.5 }}
           className="mt-12 flex items-center justify-center gap-4"
         >
-          <Button size="lg" className="rounded-full text-base">
-            View Projects <ArrowUpRight className="h-5! w-5!" />
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-full text-base shadow-none"
-          >
-            <Mail className="h-5! w-5!" /> Contact Me
-          </Button>
+          <Link href="#projects">
+            <Button size="lg" className="rounded-full text-base">
+              View Projects <ArrowUpRight className="h-5! w-5!" />
+            </Button>
+          </Link>
+          <Link href="#contact">
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full text-base shadow-none"
+            >
+              <Mail className="h-5! w-5!" /> Contact Me
+            </Button>
+          </Link>
         </m.div>
       </m.div>
     </div>
