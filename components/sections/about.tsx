@@ -1,44 +1,70 @@
 "use client";
 
 import { m } from "framer-motion";
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Github, Download } from "lucide-react";
+import Link from "next/link";
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-[#F5F5F7] dark:bg-muted/20">
-      <div className="container mx-auto px-4 md:px-8 py-24 md:py-32 max-w-screen-2xl">
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0 }}
-          className="space-y-12"
-        >
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-1">
+    <section id="about" className="bg-background">
+      <div className="container mx-auto px-8 md:px-16 py-24 md:py-32 max-w-screen-2xl">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <m.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <Badge
+              variant="secondary"
+              className="w-fit rounded-full px-4 py-1.5 text-sm font-medium"
+            >
               About Me
+            </Badge>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+              Passionate about creating impactful web experiences
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Frontend Developer focused on UI/UX and User Happiness.
+
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              With over 5 years of experience in full-stack development, I
+              specialize in building scalable web applications using modern
+              technologies. My expertise includes React, Node.js, and cloud
+              architecture. I&apos;m passionate about creating elegant solutions
+              to complex problems and sharing knowledge with the developer
+              community.
             </p>
-          </div>
-          <div className="mx-auto max-w-3xl space-y-8 text-muted-foreground">
-            <p className="leading-relaxed">
-              I am a Computer Science student passionate about Frontend
-              Development. My ultimate goal is to solve real-world problems and
-              bring smiles to people&apos;s faces through the software I build. I
-              believe that a product is only successful when the user feels good
-              using it, which is why I prioritize UI/UX above all else.
-            </p>
-            <p className="leading-relaxed">
-              Currently, I work as a Frontend Engineer intern at a Marketing
-              Cloud development team and also teach React at a programming
-              school. I love modern tools like{" "}
-              <span className="font-medium text-foreground">Shadcn UI</span> for
-              building polished interfaces and lately, I&apos;ve been exploring
-              AI-driven &ldquo;Vibe Coding&rdquo; to accelerate my workflow.
-            </p>
-          </div>
-        </m.div>
+
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Link href="https://github.com/Ashunar0">
+                <Button size="lg" className="rounded-full">
+                  <Github className="h-5 w-5" />
+                  View Github
+                </Button>
+              </Link>
+            </div>
+          </m.div>
+
+          <m.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-square lg:aspect-auto lg:h-[500px] rounded-2xl overflow-hidden bg-muted"
+          >
+            <Image
+              src="/images/about.png"
+              alt="About me"
+              fill
+              className="object-cover"
+              priority
+            />
+          </m.div>
+        </div>
       </div>
     </section>
   );

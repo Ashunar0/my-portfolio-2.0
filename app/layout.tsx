@@ -35,8 +35,7 @@ export default function RootLayout({
         <MotionProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
             disableTransitionOnChange
           >
             <Header />
