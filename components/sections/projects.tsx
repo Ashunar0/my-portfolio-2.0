@@ -46,7 +46,7 @@ const projects = [
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="bg-[#F5F5F7] dark:bg-muted/20">
+    <section id="projects" className="bg-background">
       <div className="container mx-auto px-4 md:px-8 py-24 md:py-32 max-w-screen-2xl">
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,11 +56,17 @@ export function ProjectsSection() {
           className="space-y-12"
         >
           <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl pb-1">
+            <Badge
+              variant="secondary"
+              className="w-fit rounded-full px-4 py-1.5 text-sm font-medium mx-auto"
+            >
               Projects
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+              Featured Work
             </h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              A selection of my recent work.
+              Showcasing some of my best projects and technical achievements
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
