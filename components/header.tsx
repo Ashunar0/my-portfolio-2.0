@@ -31,7 +31,7 @@ export function Header() {
             href="/"
             className="flex items-center space-x-2 font-bold text-xl"
           >
-            My Portfolio
+            Asahi Kawanobe
           </Link>
         </div>
 

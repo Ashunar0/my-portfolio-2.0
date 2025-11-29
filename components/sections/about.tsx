@@ -27,16 +27,17 @@ export function AboutSection() {
             </Badge>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-              Passionate about creating impactful web experiences
+              Crafting clean, thoughtful UI for real-world use.
             </h2>
 
             <p className="text-muted-foreground text-lg leading-relaxed">
-              With over 5 years of experience in full-stack development, I
-              specialize in building scalable web applications using modern
-              technologies. My expertise includes React, Node.js, and cloud
-              architecture. I&apos;m passionate about creating elegant solutions
-              to complex problems and sharing knowledge with the developer
-              community.
+              Hi, <span className="font-bold">I'm Asahi Kawanobe</span> — a
+              product-focused Frontend Developer who turns real problems into
+              simple, usable Web applications. I start by understanding the
+              problem, then design clean UI and thoughtful UX through small,
+              iterative releases. I'm currently a Frontend Engineer intern in a
+              marketing automation team and also teach React/Next.js. I've built
+              several practical Web services used in real contexts.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-4">

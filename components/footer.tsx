@@ -16,12 +16,20 @@ export function Footer() {
             GitHub
           </a>
           <a
-            href="https://x.com/ashunar0_mui"
+            href="https://x.com/aka_dev_ex"
             target="_blank"
             rel="noreferrer"
             className="text-sm font-medium underline underline-offset-4"
           >
-            Twitter
+            X (Twitter)
+          </a>
+          <a
+            href="https://zenn.dev/ashunar0"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm font-medium underline underline-offset-4"
+          >
+            Zenn
           </a>
         </div>
       </div>

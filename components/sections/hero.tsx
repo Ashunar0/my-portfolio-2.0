@@ -3,7 +3,7 @@
 import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Mail, Twitter } from "lucide-react";
 import { m } from "framer-motion";
 import Link from "next/link";
 
@@ -43,6 +43,31 @@ export function HeroSection() {
           My process starts with understanding real problems and crafting clean,
           polished UI to solve them.
         </m.p>
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.45 }}
+          className="mt-6 flex items-center justify-center gap-4"
+        >
+          <a
+            href="https://github.com/Ashunar0"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 hover:bg-foreground/5 transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://x.com/aka_dev_ex"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 hover:bg-foreground/5 transition-colors"
+            aria-label="X (Twitter)"
+          >
+            <Twitter className="h-5 w-5" />
+          </a>
+        </m.div>
         <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
