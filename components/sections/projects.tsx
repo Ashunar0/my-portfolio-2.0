@@ -13,23 +13,23 @@ import { Button } from "@/components/ui/button";
 import { m } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const projects = [
   {
-    title: "Project One",
-    description:
-      "A brief description of the project. What it does, the problem it solves, and the technologies used.",
+    title: "2sec LP",
+    description: "スマートフォンアプリ「2sec」のランディングページ。",
     tags: ["Next.js", "TypeScript", "Tailwind"],
-    image: "/file.svg", // Placeholder
-    github: "#",
-    demo: "#",
+    image: "/images/2sec.png", // Placeholder
+    github: "https://github.com/Ashunar0/2sec-lp",
+    demo: "https://2sec-lp.vercel.app/",
   },
   {
     title: "Project Two",
     description:
       "Another cool project description. Highlights key features and technical challenges overcome.",
     tags: ["React", "Node.js", "PostgreSQL"],
-    image: "/globe.svg", // Placeholder
+    image: "", // Placeholder
     github: "#",
     demo: "#",
   },
@@ -38,7 +38,7 @@ const projects = [
     description:
       "A mobile-first application built with modern tools. Focuses on performance and user experience.",
     tags: ["React Native", "Firebase"],
-    image: "/window.svg", // Placeholder
+    image: "", // Placeholder
     github: "#",
     demo: "#",
   },
@@ -81,9 +81,13 @@ export function ProjectsSection() {
                 <Card className="h-full flex flex-col overflow-hidden">
                   <div className="relative aspect-video overflow-hidden bg-muted/50 flex items-center justify-center">
                     {/* Placeholder for project image - in real app use next/image with proper src */}
-                    <div className="text-muted-foreground text-sm">
-                      Project Image Placeholder
-                    </div>
+                    {project.image ? (
+                      <Image src={project.image} alt={project.title} fill />
+                    ) : (
+                      <div className="text-muted-foreground text-sm">
+                        Project Image Placeholder
+                      </div>
+                    )}
                   </div>
                   <CardHeader>
                     <CardTitle>{project.title}</CardTitle>
