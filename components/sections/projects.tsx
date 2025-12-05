@@ -25,13 +25,12 @@ const projects = [
     demo: "https://2sec-lp.vercel.app/",
   },
   {
-    title: "Project Two",
-    description:
-      "Another cool project description. Highlights key features and technical challenges overcome.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    image: "", // Placeholder
-    github: "#",
-    demo: "#",
+    title: "Folio",
+    description: "小規模組織向け会計管理システム。",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Supabase"],
+    image: "/images/folio.png", // Placeholder
+    github: "https://github.com/Ashunar0/folio",
+    demo: "https://foliosaas.vercel.app/",
   },
   {
     title: "Project Three",
